@@ -37,6 +37,8 @@ npm install
 5. Place the JSON file in the project root directory
 6. Update the filename in `firebaseConfig.js` if needed
 
+**Important:** The Firebase service account key is not included in this repository for security reasons. You need to add your own Firebase credentials.
+
 ### 4. Start the Server
 ```bash
 node index.js

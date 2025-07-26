@@ -13,7 +13,7 @@ yarn-error.log*
 
 # Firebase service account key (for security)
 # Note: You may want to keep this for the assignment, but in production it should be in .gitignore
-# autsai-messaging-app-firebase-adminsdk-fbsvc-d1cd7b9eb7.json
+autsai-messaging-app-firebase-adminsdk-fbsvc-d1cd7b9eb7.json
 
 # Logs
 logs
