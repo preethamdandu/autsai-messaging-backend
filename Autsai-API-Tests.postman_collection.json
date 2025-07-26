@@ -1,0 +1,194 @@
+{
+	"info": {
+		"_postman_id": "autsai-messaging-api-tests",
+		"name": "Autsai Messaging API",
+		"description": "Backend API tests for Autsai Junior Backend Developer assignment. Includes user registration, messaging between two users, and profile update endpoints.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User Registration (Task 1)",
+			"item": [
+				{
+					"name": "Register User 1",
+					"request": {
+						"method": "POST",
+						"header": [
+							{"key": "Content-Type", "value": "application/json"}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"user1@example.com\",\n  \"password\": \"password123\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/register",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "3000",
+							"path": ["register"]
+						},
+						"description": "Register the first user. Save the UID from the response for messaging and profile update tests."
+					}
+				},
+				{
+					"name": "Register User 2",
+					"request": {
+						"method": "POST",
+						"header": [
+							{"key": "Content-Type", "value": "application/json"}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"user2@example.com\",\n  \"password\": \"password123\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/register",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "3000",
+							"path": ["register"]
+						},
+						"description": "Register the second user. Save the UID from the response for messaging and profile update tests."
+					}
+				}
+			],
+			"description": "Endpoints for registering two users. Use the returned UIDs for messaging and profile update."
+		},
+		{
+			"name": "Messaging Between Two Users (Task 1)",
+			"item": [
+				{
+					"name": "Send Message from User 1 to User 2",
+					"request": {
+						"method": "POST",
+						"header": [
+							{"key": "Content-Type", "value": "application/json"}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"text\": \"Hello! How are you?\",\n  \"senderId\": \"<user1_uid>\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/chats/<user1_uid>_<user2_uid>/messages",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "3000",
+							"path": ["chats", "<user1_uid>_<user2_uid>", "messages"]
+						},
+						"description": "Send a message from User 1 to User 2. Replace <user1_uid> and <user2_uid> with actual UIDs, combined alphabetically."
+					}
+				},
+				{
+					"name": "Send Message from User 2 to User 1",
+					"request": {
+						"method": "POST",
+						"header": [
+							{"key": "Content-Type", "value": "application/json"}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"text\": \"Hi! I'm doing great! How about you?\",\n  \"senderId\": \"<user2_uid>\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/chats/<user1_uid>_<user2_uid>/messages",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "3000",
+							"path": ["chats", "<user1_uid>_<user2_uid>", "messages"]
+						},
+						"description": "Send a message from User 2 to User 1. Replace <user1_uid> and <user2_uid> with actual UIDs, combined alphabetically."
+					}
+				},
+				{
+					"name": "Get Messages Between User 1 and User 2",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/chats/<user1_uid>_<user2_uid>/messages",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "3000",
+							"path": ["chats", "<user1_uid>_<user2_uid>", "messages"]
+						},
+						"description": "Retrieve all messages between User 1 and User 2. Replace <user1_uid> and <user2_uid> with actual UIDs, combined alphabetically."
+					}
+				}
+			],
+			"description": "Endpoints for sending and retrieving messages between two users using their UIDs."
+		},
+		{
+			"name": "Profile Update (Tier 2)",
+			"item": [
+				{
+					"name": "Update User 1 Profile",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{"key": "Content-Type", "value": "application/json"}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"uid\": \"<user1_uid>\",\n  \"name\": \"User One Name\",\n  \"avatar\": \"https://your-avatar-url.com/avatar1.png\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/profile",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "3000",
+							"path": ["profile"]
+						},
+						"description": "Update the profile info for User 1. Replace <user1_uid> with the actual UID."
+					}
+				},
+				{
+					"name": "Update User 2 Profile",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{"key": "Content-Type", "value": "application/json"}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"uid\": \"<user2_uid>\",\n  \"name\": \"User Two Name\",\n  \"avatar\": \"https://your-avatar-url.com/avatar2.png\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/profile",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "3000",
+							"path": ["profile"]
+						},
+						"description": "Update the profile info for User 2. Replace <user2_uid> with the actual UID."
+					}
+				}
+			],
+			"description": "Endpoints for updating user profile information (Tier 2)."
+		},
+		{
+			"name": "Health Check",
+			"item": [
+				{
+					"name": "Server Status",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "3000",
+							"path": [""]
+						},
+						"description": "Check if the server is running."
+					}
+				}
+			],
+			"description": "Basic health check endpoint."
+		}
+	],
+	"event": [],
+	"variable": [
+		{"key": "baseUrl", "value": "http://localhost:3000", "type": "string"}
+	]
+} 
